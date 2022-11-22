@@ -1,0 +1,4 @@
+category_filters:
+  default: >-
+    [{}]
+  json_schema: '{"type":"array","format":"list","uniqueItems":true,"items":{"type":"object","properties":{"category_id":{"type":"string"},"filters":{"type":"array","format":"table","uniqueItems":true,"items":{"type":"object","properties":{"link_type":{"type":"string", "enum": ["filter","subcategory","external","onPage"]},"link_text":{"type":"string"},"link":{"type":"string"},"icon":{"type":"string"}},"additionalProperties":false}}},"additionalProperties":false}}'

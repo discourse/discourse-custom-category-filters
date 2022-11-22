@@ -1,0 +1,22 @@
+{{#each filteredSetting as |fs|}}
+  {{#each fs.filters as |f|}}
+    <a
+      class="custom-category-filter {{if f.active 'active'}}"
+      href={{unless (eq f.link_type "onPage") f.link}}
+      {{on "click" (fn this.toggleClass f)}}
+    >
+      {{#if f.icon}}
+        {{d-icon f.icon}}
+      {{/if}}
+      {{f.link_text}}
+    </a>
+  {{/each}}
+{{/each}}
+
+<a
+  class="custom-category-filter custom-category-filter-show-all hidden"
+  {{on "click" this.showAll}}
+>
+
+  {{theme-i18n "show_all"}}
+</a>
