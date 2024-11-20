@@ -1,4 +1,4 @@
-{{#each filteredSetting as |fs|}}
+{{#each this.filteredSetting as |fs|}}
   {{#each fs.filters as |f|}}
     <a
       {{on "click" (fn this.toggleClass f)}}
