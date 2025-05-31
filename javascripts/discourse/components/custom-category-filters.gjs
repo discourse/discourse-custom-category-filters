@@ -1,6 +1,11 @@
 import Component from "@glimmer/component";
+import { fn } from "@ember/helper";
+import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
+import { eq } from "truth-helpers";
+import icon from "discourse/helpers/d-icon";
+import { i18n } from "discourse-i18n";
 
 export default class CategoryFeaturedImages extends Component {
   @service router;
@@ -121,4 +126,29 @@ export default class CategoryFeaturedImages extends Component {
       .querySelector(".custom-category-filter-show-all")
       .classList.add("hidden");
   }
+
+  <template>
+    {{#each this.filteredSetting as |fs|}}
+      {{#each fs.filters as |f|}}
+        <a
+          {{on "click" (fn this.toggleClass f)}}
+          href={{unless (eq f.link_type "onPage") f.link}}
+          class="custom-category-filter {{if f.active 'active'}}"
+        >
+          {{#if f.icon}}
+            {{icon f.icon}}
+          {{/if}}
+          {{f.link_text}}
+        </a>
+      {{/each}}
+    {{/each}}
+
+    <a
+      {{on "click" this.showAll}}
+      href
+      class="custom-category-filter custom-category-filter-show-all hidden"
+    >
+      {{i18n (themePrefix "show_all")}}
+    </a>
+  </template>
 }
